@@ -20,16 +20,22 @@
             }; 
         })(window, "https://app.cal.com/embed/embed.js", "init");
 
-        // Inicializa o recurso de UI
         Cal("init", {origin:"https://app.cal.com"});
         
-        // Configura a aparência do Modal (Tema escuro e cor da marca)
         Cal("ui", {
             "theme":"dark",
             "styles":{"branding":{"brandColor":"#f59e0b"}},
             "hideEventTypeDetails":false,
             "layout":"month_view"
         });
+
+        // FUNÇÃO MANUAL PARA GARANTIR A ABERTURA
+        function abrirCalendario(slug) {
+            Cal("show", {
+            calLink: slug,
+            config: {"theme":"dark"}
+            });
+        }
     </script>
 
     <style>
@@ -135,10 +141,8 @@
                 <h3 class="text-2xl font-bold">Ricardo Silva</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Especialista em Navalha</p>
                 <button 
-                    data-cal-link="gabriel-henrique-jujxze/ricardo" 
-                    data-cal-namespace="" 
-                    data-cal-config='{"theme":"dark"}'
-                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase z-50 relative"
+                    onclick="abrirCalendario('gabriel-henrique-jujxze/ricardo')"
+                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase transition-transform hover:scale-105"
                 >
                     Agendar com Ricardo
                 </button>
@@ -150,12 +154,10 @@
                 <h3 class="text-2xl font-bold">João Paulo</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Mestre do Degradê</p>
                 <button 
-                    data-cal-link="gabriel-henrique-jujxze/joao" 
-                    data-cal-namespace="" 
-                    data-cal-config='{"theme":"dark"}'
-                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase z-50 relative"
+                    onclick="abrirCalendario('gabriel-henrique-jujxze/joao')"
+                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase transition-transform hover:scale-105"
                 >
-                    Agendar com Joao
+                    Agendar com João
                 </button>
             </div>
 
@@ -165,12 +167,10 @@
                 <h3 class="text-2xl font-bold">Felipe Barber</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Cortes Clássicos</p>
                 <button 
-                    data-cal-link="gabriel-henrique-jujxze/felipe" 
-                    data-cal-namespace="" 
-                    data-cal-config='{"theme":"dark"}'
-                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase z-50 relative"
+                    onclick="abrirCalendario('gabriel-henrique-jujxze/felipe')"
+                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase transition-transform hover:scale-105"
                 >
-                        Agendar com Felipe
+                    Agendar com Felipe
                 </button>
             </div>
         </div>
