@@ -8,32 +8,27 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
     <!-- Cal.com Embed Code -->
-    <script type="text/javascript">
-        (function (C, A, L) { 
-            let p = function (a, ar) { a.q.push(ar); }; 
-            let d = C.document; C.Cal = C.Cal || function () { 
-                let cal = C.Cal; let ar = arguments; 
-                if (!cal.loaded) { cal.q = []; cal.loaded = true; } 
-                if (ar[0] === L) { const api = function () { p(api, arguments); }; const res = api; return res; } 
-                p(cal, ar); 
-            }; 
-        })(window, "https://app.cal.com/embed/embed.js", "init");
+<script type="text/javascript">
+  (function (C, A, L) { 
+    let p = function (a, ar) { a.q.push(ar); }; 
+    let d = C.document; C.Cal = C.Cal || function () { 
+      let cal = C.Cal; let ar = arguments; 
+      if (!cal.loaded) { cal.q = []; cal.loaded = true; } 
+      if (ar[0] === L) { const api = function () { p(api, arguments); }; const res = api; return res; } 
+      p(cal, ar); 
+    }; 
+  })(window, "https://app.cal.com/embed/embed.js", "init");
 
-        Cal("init", {origin:"https://app.cal.com"});
+  Cal("init", {origin:"https://app.cal.com"});
+  Cal("ui", {"theme":"dark","styles":{"branding":{"brandColor":"#f59e0b"}},"hideEventTypeDetails":false,"layout":"month_view"});
 
-        Cal("ui", {
-            "theme":"dark",
-            "styles":{"branding":{"brandColor":"#f59e0b"}},
-            "hideEventTypeDetails":false,
-            "layout":"month_view"
-        });
-
-        // Esta linha garante que o Cal.com procure por botões com data-cal-link logo que carregar
-        Cal("inline", {
-            elementOrSelector: "#cal-embed", // não é obrigatório, mas ajuda o script a iniciar
-            calLink: "gabriel-henrique-jujxze/ricardo"
-        });
-    </script>
+  // Função manual para abrir o agendamento
+  function agendar(slug) {
+    Cal("show", {
+      calLink: slug
+    });
+  }
+</script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Oswald:wght@500;700&display=swap');
