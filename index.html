@@ -20,13 +20,16 @@
   })(window, "https://app.cal.com/embed/embed.js", "init");
 
   Cal("init", {origin:"https://app.cal.com"});
-  Cal("ui", {"theme":"dark","styles":{"branding":{"brandColor":"#f59e0b"}},"hideEventTypeDetails":false,"layout":"month_view"});
+  Cal("ui", {"theme":"dark"});
 
-  // Função manual para abrir o agendamento
   function agendar(slug) {
-    Cal("show", {
-      calLink: slug
-    });
+    console.log("Tentando agendar para: " + slug);
+    try {
+      Cal("show", { calLink: slug });
+    } catch (e) {
+      console.error("Erro ao abrir modal, redirecionando...", e);
+      window.open("https://cal.com/" + slug, "_blank");
+    }
   }
 </script>
 
@@ -132,7 +135,7 @@
                 <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">Ricardo Silva</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Especialista em Navalha</p>
-                <button onclick="agendar('gabriel-henrique-jujxze/ricardo')" class="w-full bg-zinc-100 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-500 transition-colors">
+                <button onclick="agendar('gabriel-henrique-jujxze/ricardo')" class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase">
                     Agendar com Ricardo
                 </button>
             </div>
