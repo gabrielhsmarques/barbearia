@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Pro | Agendamento & Estilo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Cal.com Embed Code -->
+    <script type="text/javascript">
+      (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.q = []; cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const res = api; return res; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
+      Cal("init", {origin:"https://app.cal.com"});
+      Cal("ui", {"theme":"dark","styles":{"branding":{"brandColor":"#f59e0b"}},"hideEventTypeDetails":false,"layout":"month_view"});
+      Cal("init", "ricardo", { origin: "https://app.cal.com" });
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Oswald:wght@500;700&display=swap');
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
+        h1, h2, h3 { font-family: 'Oswald', sans-serif; }
+        .bg-hero {
+            background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&w=1350&q=80');
+            background-size: cover; background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100">
+
+    <!-- Navegação -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-zinc-800">
+        <div class="flex justify-between items-center p-4 max-w-6xl mx-auto">
+            <div class="text-xl font-bold tracking-tighter italic text-amber-500">BARBER<span class="text-white">PRO</span></div>
+            <div class="hidden md:flex gap-8 text-xs uppercase font-bold tracking-widest">
+                <a href="#home" class="hover:text-amber-500 transition">Início</a>
+                <a href="#servicos" class="hover:text-amber-500 transition">Preços</a>
+                <a href="#equipe" class="hover:text-amber-500 transition">Barbeiros</a>
+                <a href="#local" class="hover:text-amber-500 transition">Localização</a>
+            </div>
+            <a href="#equipe" class="bg-amber-500 text-black px-4 py-2 rounded-full text-xs font-bold uppercase hover:bg-amber-600 transition">Agendar</a>
+        </div>
+    </nav>
+
+    <!-- Seção 1: Hero -->
+    <section id="home" class="bg-hero h-screen flex flex-col justify-center items-center text-center px-6">
+        <h1 class="text-6xl md:text-8xl font-bold uppercase mb-4 tracking-tighter italic">Domine seu <span class="text-amber-500">Estilo</span></h1>
+        <p class="text-zinc-400 text-lg md:text-xl max-w-2xl mb-10 leading-relaxed">A experiência de uma barbearia clássica com a facilidade do agendamento digital.</p>
+        <div class="flex flex-col md:flex-row gap-4">
+            <a href="#equipe" class="bg-amber-500 text-black px-10 py-4 rounded-md font-bold text-lg uppercase transition-all hover:scale-105">Escolher Barbeiro</a>
+            <a href="#servicos" class="bg-transparent border border-zinc-600 px-10 py-4 rounded-md font-bold text-lg uppercase hover:bg-white hover:text-black transition-all">Ver Preços</a>
+        </div>
+    </section>
+
+    <!-- Seção 2: Diferenciais -->
+    <section class="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-3 gap-12 text-center">
+        <div class="p-8 border border-zinc-900 rounded-2xl hover:bg-zinc-900/50 transition">
+            <i class="fa-solid fa-bolt text-3xl text-amber-500 mb-6"></i>
+            <h3 class="text-xl font-bold mb-3 uppercase">Sem Filas</h3>
+            <p class="text-zinc-500 text-sm">Agende online e seja atendido exatamente no seu horário.</p>
+        </div>
+        <div class="p-8 border border-zinc-900 rounded-2xl hover:bg-zinc-900/50 transition border-amber-500/30">
+            <i class="fa-solid fa-beer-mug-empty text-3xl text-amber-500 mb-6"></i>
+            <h3 class="text-xl font-bold mb-3 uppercase">Climatizado</h3>
+            <p class="text-zinc-500 text-sm">Cerveja gelada, café e um ambiente feito para você relaxar.</p>
+        </div>
+        <div class="p-8 border border-zinc-900 rounded-2xl hover:bg-zinc-900/50 transition">
+            <i class="fa-solid fa-star text-3xl text-amber-500 mb-6"></i>
+            <h3 class="text-xl font-bold mb-3 uppercase">Qualidade</h3>
+            <p class="text-zinc-500 text-sm">Os melhores produtos e profissionais Master Barbers da região.</p>
+        </div>
+    </section>
+
+    <!-- Seção 3: Serviços e Preços -->
+    <section id="servicos" class="bg-zinc-900/50 py-24 px-6">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold uppercase italic">Tabela de Serviços</h2>
+                <div class="h-1 w-20 bg-amber-500 mx-auto mt-4"></div>
+            </div>
+            
+            <div class="grid gap-6">
+                <div class="flex justify-between items-end border-b border-zinc-800 pb-4">
+                    <div>
+                        <h4 class="text-xl font-bold uppercase">Corte Masculino</h4>
+                        <p class="text-zinc-500 text-sm italic">Degradê, social ou clássico (inclui lavagem)</p>
+                    </div>
+                    <span class="text-2xl font-bold text-amber-500">R$ 50</span>
+                </div>
+                <div class="flex justify-between items-end border-b border-zinc-800 pb-4">
+                    <div>
+                        <h4 class="text-xl font-bold uppercase">Barba de Respeito</h4>
+                        <p class="text-zinc-500 text-sm italic">Toalha quente, terapia com óleos e navalha</p>
+                    </div>
+                    <span class="text-2xl font-bold text-amber-500">R$ 40</span>
+                </div>
+                <div class="flex justify-between items-end border-b border-zinc-800 pb-4">
+                    <div>
+                        <h4 class="text-xl font-bold uppercase">Combo Master</h4>
+                        <p class="text-zinc-500 text-sm italic">Cabelo + Barba + Sobrancelha</p>
+                    </div>
+                    <span class="text-2xl font-bold text-amber-500">R$ 80</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 4: Equipe (Onde a modularidade acontece) -->
+    <section id="equipe" class="py-24 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold uppercase italic">Escolha o Profissional</h2>
+            <p class="text-zinc-500 mt-2">Clique no barbeiro para ver os horários disponíveis</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Barbeiro 1 -->
+            <div class="bg-zinc-900 p-8 rounded-3xl text-center border border-zinc-800 hover:border-amber-500 transition-all">
+                <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
+                <h3 class="text-2xl font-bold">Ricardo Silva</h3>
+                <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Especialista em Navalha</p>
+                <a href="https://cal.com/gabriel-henrique-jujxze/ricardo" target="_blank" class="block w-full bg-zinc-100 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-500 transition-colors text-center">
+                    Agendar com Ricardo
+                </a>
+            </div>
+
+            <!-- Barbeiro 2 -->
+            <div class="bg-zinc-900 p-8 rounded-3xl text-center border border-zinc-800 hover:border-amber-500 transition-all">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
+                <h3 class="text-2xl font-bold">João Paulo</h3>
+                <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Mestre do Degradê</p>
+                <button data-cal-link="gabriel-henrique-jujxze/joao" class="w-full bg-zinc-100 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-500 transition-colors">Agendar com João</button>
+            </div>
+
+            <!-- Barbeiro 3 -->
+            <div class="bg-zinc-900 p-8 rounded-3xl text-center border border-zinc-800 hover:border-amber-500 transition-all">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
+                <h3 class="text-2xl font-bold">Felipe Barber</h3>
+                <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Cortes Clássicos</p>
+                <button data-cal-link="gabriel-henrique-jujxze/felipe" class="w-full bg-zinc-100 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-500 transition-colors">Agendar com Felipe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção 5: Localização -->
+    <section id="local" class="py-24 bg-black border-t border-zinc-900">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-4xl font-bold mb-6 uppercase italic">Nossa Casa</h2>
+                <p class="text-zinc-400 mb-8 leading-relaxed">Estamos localizados no coração da cidade, com estacionamento próprio e fácil acesso. Venha nos visitar e tomar uma cerveja enquanto transformamos seu visual.</p>
+                <div class="flex items-center gap-4 text-amber-500">
+                    <i class="fa-solid fa-location-dot text-2xl"></i>
+                    <span class="text-white font-bold">Rua das Barbearias, 500 - Centro</span>
+                </div>
+            </div>
+            <div class="h-64 bg-zinc-800 rounded-3xl flex items-center justify-center italic text-zinc-600">
+                [ Google Maps Embed Aqui ]
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-10 text-center border-t border-zinc-900 text-zinc-600 text-xs uppercase tracking-widest">
+        &copy; 2023 Barber Pro - Desenvolvimento por Seu Nome
+    </footer>
+
+</body>
+</html>
