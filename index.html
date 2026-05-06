@@ -7,31 +7,30 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
+
     <!-- Cal.com Embed Code -->
-<script type="text/javascript">
-  (function (C, A, L) { 
-    let p = function (a, ar) { a.q.push(ar); }; 
-    let d = C.document; C.Cal = C.Cal || function () { 
-      let cal = C.Cal; let ar = arguments; 
-      if (!cal.loaded) { cal.q = []; cal.loaded = true; } 
-      if (ar[0] === L) { const api = function () { p(api, arguments); }; const res = api; return res; } 
-      p(cal, ar); 
-    }; 
-  })(window, "https://app.cal.com/embed/embed.js", "init");
+    <script type="text/javascript">
+        (function (C, A, L) { 
+            let p = function (a, ar) { a.q.push(ar); }; 
+            let d = C.document; C.Cal = C.Cal || function () { 
+            let cal = C.Cal; let ar = arguments; 
+            if (!cal.loaded) { cal.q = []; cal.loaded = true; } 
+            if (ar[0] === L) { const api = function () { p(api, arguments); }; const res = api; return res; } 
+            p(cal, ar); 
+            }; 
+        })(window, "https://app.cal.com/embed/embed.js", "init");
 
-  Cal("init", {origin:"https://app.cal.com"});
-  Cal("ui", {"theme":"dark"});
-
-  function agendar(slug) {
-    console.log("Tentando agendar para: " + slug);
-    try {
-      Cal("show", { calLink: slug });
-    } catch (e) {
-      console.error("Erro ao abrir modal, redirecionando...", e);
-      window.open("https://cal.com/" + slug, "_blank");
-    }
-  }
-</script>
+        // Inicializa o recurso de UI
+        Cal("init", {origin:"https://app.cal.com"});
+        
+        // Configura a aparência do Modal (Tema escuro e cor da marca)
+        Cal("ui", {
+            "theme":"dark",
+            "styles":{"branding":{"brandColor":"#f59e0b"}},
+            "hideEventTypeDetails":false,
+            "layout":"month_view"
+        });
+    </script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Oswald:wght@500;700&display=swap');
@@ -135,7 +134,12 @@
                 <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">Ricardo Silva</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Especialista em Navalha</p>
-                <button onclick="agendar('gabriel-henrique-jujxze/ricardo')" class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase">
+                <button 
+                    data-cal-link="gabriel-henrique-jujxze/ricardo" 
+                    data-cal-namespace="" 
+                    data-cal-config='{"theme":"dark"}'
+                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase z-50 relative"
+                >
                     Agendar com Ricardo
                 </button>
             </div>
@@ -145,7 +149,12 @@
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">João Paulo</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Mestre do Degradê</p>
-                <button onclick="agendar('gabriel-henrique-jujxze/joao')" class="w-full bg-zinc-100 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-500 transition-colors">
+                <button 
+                    data-cal-link="gabriel-henrique-jujxze/joao" 
+                    data-cal-namespace="" 
+                    data-cal-config='{"theme":"dark"}'
+                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase z-50 relative"
+                >
                     Agendar com Joao
                 </button>
             </div>
@@ -155,8 +164,13 @@
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">Felipe Barber</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Cortes Clássicos</p>
-                <button onclick="agendar('gabriel-henrique-jujxze/felipe')" class="w-full bg-zinc-100 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-500 transition-colors">
-                    Agendar com Felipe
+                <button 
+                    data-cal-link="gabriel-henrique-jujxze/felipe" 
+                    data-cal-namespace="" 
+                    data-cal-config='{"theme":"dark"}'
+                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase z-50 relative"
+                >
+                        Agendar com Felipe
                 </button>
             </div>
         </div>
