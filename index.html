@@ -7,37 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     
-
-    <!-- Cal.com Embed Code -->
-    <script type="text/javascript">
-        (function (C, A, L) { 
-            let p = function (a, ar) { a.q.push(ar); }; 
-            let d = C.document; C.Cal = C.Cal || function () { 
-            let cal = C.Cal; let ar = arguments; 
-            if (!cal.loaded) { cal.q = []; cal.loaded = true; } 
-            if (ar[0] === L) { const api = function () { p(api, arguments); }; const res = api; return res; } 
-            p(cal, ar); 
-            }; 
-        })(window, "https://app.cal.com/embed/embed.js", "init");
-
-        Cal("init", {origin:"https://app.cal.com"});
-        
-        Cal("ui", {
-            "theme":"dark",
-            "styles":{"branding":{"brandColor":"#f59e0b"}},
-            "hideEventTypeDetails":false,
-            "layout":"month_view"
-        });
-
-        // FUNÇÃO MANUAL PARA GARANTIR A ABERTURA
-        function abrirCalendario(slug) {
-            Cal("show", {
-            calLink: slug,
-            config: {"theme":"dark"}
-            });
-        }
-    </script>
-
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Oswald:wght@500;700&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
@@ -127,24 +96,21 @@
         </div>
     </section>
 
-    <!-- Seção 4: Equipe (Onde a modularidade acontece) -->
+    <!-- Seção 4: Equipe (Modularidade Determinística) -->
     <section id="equipe" class="py-24 px-6 max-w-6xl mx-auto">
         <div class="text-center mb-16">
             <h2 class="text-4xl font-bold uppercase italic">Escolha o Profissional</h2>
-            <p class="text-zinc-500 mt-2">Clique no barbeiro para ver os horários disponíveis</p>
+            <p class="text-zinc-500 mt-2">Clique no barbeiro para carregar a agenda dele logo abaixo</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-8 mb-16">
             <!-- Barbeiro 1 -->
             <div class="bg-zinc-900 p-8 rounded-3xl text-center border border-zinc-800 hover:border-amber-500 transition-all">
                 <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">Ricardo Silva</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Especialista em Navalha</p>
-                <button 
-                    onclick="abrirCalendario('gabriel-henrique-jujxze/ricardo')"
-                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase transition-transform hover:scale-105"
-                >
-                    Agendar com Ricardo
+                <button onclick="carregarAgenda('ricardo', 'Ricardo Silva')" class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-600 transition-colors">
+                    Selecionar Ricardo
                 </button>
             </div>
 
@@ -153,11 +119,8 @@
                 <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">João Paulo</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Mestre do Degradê</p>
-                <button 
-                    onclick="abrirCalendario('gabriel-henrique-jujxze/joao')"
-                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase transition-transform hover:scale-105"
-                >
-                    Agendar com João
+                <button onclick="carregarAgenda('joao', 'João Paulo')" class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-600 transition-colors">
+                    Selecionar João
                 </button>
             </div>
 
@@ -166,12 +129,21 @@
                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400" class="w-32 h-32 rounded-full mx-auto mb-6 object-cover border-4 border-amber-500/20">
                 <h3 class="text-2xl font-bold">Felipe Barber</h3>
                 <p class="text-amber-500 text-xs font-bold uppercase tracking-tighter mb-8 italic">Cortes Clássicos</p>
-                <button 
-                    onclick="abrirCalendario('gabriel-henrique-jujxze/felipe')"
-                    class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase transition-transform hover:scale-105"
-                >
-                    Agendar com Felipe
+                <button onclick="carregarAgenda('felipe', 'Felipe Barber')" class="w-full bg-amber-500 text-black py-3 rounded-xl font-bold uppercase hover:bg-amber-600 transition-colors">
+                    Selecionar Felipe
                 </button>
+            </div>
+        </div>
+
+        <!-- CONTAINER INTEGRADO DA AGENDA (INLINE/IFRAME) -->
+        <div id="area-calendario" class="hidden max-w-4xl mx-auto bg-zinc-900 border border-zinc-800 rounded-3xl p-4 md:p-6 transition-all duration-500">
+            <div class="text-center mb-6">
+                <h3 class="text-2xl font-bold uppercase">Agenda: <span id="nome-barbeiro-selecionado" class="text-amber-500"></span></h3>
+                <p class="text-zinc-500 text-sm">Escolha o dia e horário ideal para o seu corte</p>
+            </div>
+            <!-- Iframe Isolado Seguro -->
+            <div class="w-full h-[650px] overflow-hidden rounded-xl bg-zinc-950">
+                <iframe id="iframe-cal" src="" class="w-full h-full border-0 bg-transparent" allow="camera; microphone; geolocation;"></iframe>
             </div>
         </div>
     </section>
@@ -194,8 +166,30 @@
     </section>
 
     <footer class="py-10 text-center border-t border-zinc-900 text-zinc-600 text-xs uppercase tracking-widest">
-        &copy; 2023 Barber Pro - Desenvolvimento por Seu Nome
+        &copy; 2026 Barber Pro - Desenvolvimento por Gabriel Henrique
     </footer>
+
+    <!-- LÓGICA DE CONTROLE NATIVA DA PÁGINA -->
+    <script>
+        function carregarAgenda(slug, nome) {
+            const usuario = 'gabriel-henrique-jujxze';
+            const iframe = document.getElementById('iframe-cal');
+            const areaCalendario = document.getElementById('area-calendario');
+            const txtNome = document.getElementById('nome-barbeiro-selecionado');
+            
+            // 1. Atualiza dinamicamente o título com o profissional escolhido
+            txtNome.innerText = nome;
+            
+            // 2. Injeta diretamente a URL de agendamento no iframe de forma isolada
+            iframe.src = `https://cal.com/${usuario}/${slug}`;
+            
+            // 3. Torna o container do calendário visível retirando o 'hidden' do Tailwind
+            areaCalendario.classList.remove('hidden');
+            
+            // 4. Faz uma rolagem suave da tela focando na agenda carregada
+            areaCalendario.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
 
 </body>
 </html>
